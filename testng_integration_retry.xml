@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.thetestingacademy.listeners.RetryListener"/>
+    </listeners>
+
+    <test verbose="2" preserve-order="true" name="APIAutomationFramworkATB7x">
+        <classes>
+            <class name="com.thetestingacademy.tests.integration.TCIntegrationFlowRetry">
+            </class>
+        </classes>
+    </test>
+</suite>
