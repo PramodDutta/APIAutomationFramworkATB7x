@@ -32,7 +32,7 @@ public class BaseTest {
         assertActions = new AssertActions();
         requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(APIConstants.BASE_URL)
-                .addHeader("Content-Type","application/json")
+                .addHeader("Content-Type", "application/json")
                 .build().log().all();
 
 //        requestSpecification = RestAssured.
@@ -42,6 +42,25 @@ public class BaseTest {
 //                .log().all();
 
 
-
     }
+
+
+    public String getToken() {
+        requestSpecification = RestAssured
+                .given()
+                .baseUri(APIConstants.BASE_URL)
+                .basePath(APIConstants.AUTH_URL);
+
+        // Setting the payload
+        String payload = payloadManager.setAuthPayload();
+
+        // Get the Token
+        response = requestSpecification.contentType(ContentType.JSON).body(payload).when().post();
+
+        // String Extraction
+        String token = payloadManager.getTokenFromJSON(response.asString());
+
+        return token;
+    }
+
 }
